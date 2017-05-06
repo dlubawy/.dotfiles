@@ -27,17 +27,20 @@ alias la="ls -lah"
 alias lsd='ls -lh | grep "^d"'
 
 # URL-encode strings
-alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.argv[1]);"'
+alias urlencode='python2 -c "import sys, urllib as ul; print ul.quote_plus(sys.argv[1]);"'
 
 # Print each PATH entry on a separate line
 alias path='echo -e ${PATH//:/\\n}'
 
 # Dotfiles shortcut
 alias dots='cd ~/.dotfiles'
+alias ali='vim ~/.dotfiles/aliases'
+alias dotup='cd ~/.dotfiles && ./install && cd -'
 
-# If you're reading this and you aren't Keegan, do this. Trust me.
-#alias ali='vim ~/dotfiles/.aliases'
-#alias dotup='cd ~/dotfiles && ./bootstrap.sh && cd -'
+# Rails specific
+alias b='bundle'
+alias be='bundle exec'
+alias rt='bundle exec rake test'
 
 # tmux stuff
 alias t='tmux'
@@ -52,6 +55,12 @@ alias ssh='TERM=xterm ssh'
 # For those times
 alias wtf='ping google.com'
 alias timenow='date +"%s"'
+
+# Get week number
+alias week='date +%V'
+
+# Stopwatch
+alias timer='echo "Timer started. Stop with Ctrl-D." && date && time cat && date'
 
 # Python is python 3
 alias python=python3

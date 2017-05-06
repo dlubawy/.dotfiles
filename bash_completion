@@ -1,0 +1,11 @@
+#!bash
+
+_gibo()
+{
+    local cur opts
+    opts=$( find ${GIBO_BOILERPLATES:-"$HOME/.gitignore-boilerplates"} -name "*.gitignore" -exec basename \{\} .gitignore \; )
+    cur="${COMP_WORDS[COMP_CWORD]}"
+
+    COMPREPLY=( $(compgen -W "${opts}" -- ${cur}) )
+}
+complete -F _gibo gibo

@@ -16,16 +16,17 @@
 
 - link:
     ~/.aliases:
+    ~/.bash_completion:
     ~/.bash-git-prompt:
-    ~/.bashrc:
     ~/.bash_profile:
     ~/.bash_prompt:
+    ~/.bashrc:
     ~/.exports:
     ~/.fonts:
     ~/.functions:
     ~/.gdbinit:
-    ~/.git.scmbrc:
     ~/.gitconfig: gitconfig_local
+    ~/.git.scmbrc:
     ~/.inputrc:
     ~/.path:
     ~/.profile:

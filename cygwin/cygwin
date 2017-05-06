@@ -1,4 +1,14 @@
 export PATH=~/.dotfiles/cygwin/bin/:$PATH
+
 alias heroku='/cygdrive/c/"Program Files (x86)"/Heroku/bin/heroku.bat'
+
+alias flush='ipconfig /flushdns'
+
+# Package management
+alias update="apt-cyg update"
+alias install="apt-cyg install"
+alias remove="apt-cyg remove"
+alias search="apt-cyg search"
+alias searchall="apt-cyg searchall"
 
 # vim: set filetype=sh:
