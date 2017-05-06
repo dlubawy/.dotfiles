@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# Script to remove dots from beginning of filename
+mv $1  $(echo $1 | sed 's/^.\{1\}//g')

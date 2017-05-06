@@ -1,0 +1,55 @@
+- defaults:
+    link:
+        relink: true
+        # Uncomment to force linking.
+        #force: true
+
+- shell:
+    -
+      command: "echo Perform backup? [y/N] && \
+                read var && \
+                if [ $var = 'y' ];then cp -r ~/.* ~/.dotfiles/.local_backups;fi"
+      stdin: true
+      stdout: true
+
+- clean: ['~']
+
+- link:
+    ~/.aliases:
+    ~/.bash-git-prompt:
+    ~/.bashrc:
+    ~/.bash_profile:
+    ~/.bash_prompt:
+    ~/.exports:
+    ~/.fonts:
+    ~/.functions:
+    ~/.gdbinit:
+    ~/.git.scmbrc:
+    ~/.gitconfig: gitconfig_local
+    ~/.inputrc:
+    ~/.path:
+    ~/.profile:
+    ~/.scmbrc:
+    ~/.scm_breeze:
+    ~/.tmux-plugins:
+    ~/.tmux.conf:
+    ~/.tmux.style.conf:
+    ~/.tmuxp:
+    ~/.vimrc:
+
+- shell:
+    - 
+      command: "echo Add extra file? [y/N] && \
+                read var && \
+                if [ $var = 'y' ];then cp ~/.dotfiles/extra ~/.extra;fi"
+      stdin: true
+      stdout: true
+    - mkdir -p ~/projects
+    - mkdir -p ~/Downloads
+    - mkdir -p ~/Desktop
+    -
+      command: "echo Install Vundle? [y/N] && \
+                read var && \
+                if [ var = 'y' ];then git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim;fi"
+      stdin: true
+      stdout: true

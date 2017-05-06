@@ -1,0 +1,64 @@
+# Run this after editing any of your dotfiles
+alias src='source ~/.bashrc'
+alias :q='exit'
+
+# Easier navigation: .., ..., ...., ....., ~ and -
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+alias ~="cd ~" # `cd` is probably faster to type though
+alias -- -="cd -"
+
+# Shortcuts
+alias dl="cd ~/Downloads"
+alias dt="cd ~/Desktop"
+alias p="cd ~/projects"
+alias h="history"
+alias j="jobs"
+
+# List all files in long format
+alias l="ls -lh"
+
+# List all files in long format, including dot files
+alias la="ls -lah"
+
+# List only directories
+alias lsd='ls -lh | grep "^d"'
+
+# URL-encode strings
+alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.argv[1]);"'
+
+# Print each PATH entry on a separate line
+alias path='echo -e ${PATH//:/\\n}'
+
+# Dotfiles shortcut
+alias dots='cd ~/.dotfiles'
+
+# If you're reading this and you aren't Keegan, do this. Trust me.
+#alias ali='vim ~/dotfiles/.aliases'
+#alias dotup='cd ~/dotfiles && ./bootstrap.sh && cd -'
+
+# tmux stuff
+alias t='tmux'
+alias tns='tmux new-session -s'
+alias td='tmuxp load default'
+alias tp='tmuxp load'
+
+# necessary when using tmux: set -g default-terminal "screen-256color"
+# so things like top still work when SSHed to a remote host
+alias ssh='TERM=xterm ssh'
+
+# For those times
+alias wtf='ping google.com'
+alias timenow='date +"%s"'
+
+# Python is python 3
+alias python=python3
+alias pip=pip3
+
+# Git improvements
+alias git=hub
+[ -s "/home/Drew/.scm_breeze/scm_breeze.sh" ] && source "/home/Drew/.scm_breeze/scm_breeze.sh"
+
+# vim: set filetype=sh:

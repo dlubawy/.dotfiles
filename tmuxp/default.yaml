@@ -1,0 +1,11 @@
+session_name: default
+windows:
+    - window_name: vim | bash
+      layout: main-vertical
+      options:
+          main-pane-width: 100
+      panes:
+          - shell_command:
+              - vim -c Explore
+          - shell_command:
+              - null

@@ -1,0 +1,17 @@
+- defaults:
+    link:
+        relink: true
+        # Uncomment to force linking.
+        #force: true
+
+- link:
+    ~/.linux: linux/linux
+    ~/.gitignore_global: linux/gitignore_global
+
+- shell:
+    -
+      command: "echo install ag? [y/N] && \
+                read var && \
+                if [ $var = 'y' ];then apt-get -y install silversearcher-ag;fi"
+      stdin: true
+      stdout: true

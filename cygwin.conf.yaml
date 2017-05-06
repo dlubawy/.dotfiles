@@ -1,0 +1,30 @@
+- defaults:
+    link:
+        relink: true
+        # Uncomment to force linking.
+        #force: true
+
+- link:
+    ~/.cygwin: cygwin/cygwin
+    ~/.minttyrc: cygwin/minttyrc
+    ~/.gitignore_global: cygwin/gitignore_global
+
+- shell:
+    - rm -rf ~/Downloads
+    - ln -s /cygdrive/c/Users/Drew/Downloads ~/
+    - rm -rf ~/Desktop
+    - ln -s /cygdrive/c/Users/Drew/Desktop ~/
+    - mkdir -p ~/projects
+    -
+      command: "echo Install apt-cyg? [y/N] && \
+                    read var && \
+                if [ $var = 'y' ];then lynx -source rawgit.com/transcode-open/apt-cyg/master/apt-cyg > apt-cyg && \
+                install apt-cyg /bin;fi"
+      stdin: true
+      stdout: true
+    -
+      command: "echo Install ag? [y/N] && \
+                read var && \
+                if [ $var = 'y' ];then apt-cyg install the_silver_searcher;fi"
+      stdin: true
+      stdout: true

@@ -1,0 +1,36 @@
+# ~/.inputrc: readline initialization file.
+
+# the following line is actually
+# equivalent to "\C-?": delete-char
+"\e[3~": delete-char
+
+# VT
+"\e[1~": beginning-of-line
+"\e[4~": end-of-line
+
+# kvt
+"\e[H": beginning-of-line
+"\e[F": end-of-line
+
+# rxvt and konsole (i.e. the KDE-app...)
+"\e[7~": beginning-of-line
+"\e[8~": end-of-line
+
+# VT220
+"\eOH": beginning-of-line
+"\eOF": end-of-line
+
+set editing-mode vi
+set show-mode-in-prompt on
+
+# vi settings
+$if mode=vi
+    set keymap vi-command
+    Control-l: clear-screen
+    "E": end-of-line
+    "B": beginning-of-line
+
+    set keymap vi-insert
+    "jk": vi-movement-mode # remap escape
+    Control-l: clear-screen 
+$endif

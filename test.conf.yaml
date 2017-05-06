@@ -1,0 +1,7 @@
+- shell:
+    -
+        command: "echo Install apt-cyg? && \
+                  read var && \
+                  if [ $var = 'yes' ];then echo true;fi"
+        stdin: true
+        stdout: true

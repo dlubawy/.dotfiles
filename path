@@ -1,0 +1,3 @@
+export PATH=~/.dotfiles/bin/:$PATH
+
+# vim: set filetype=sh:

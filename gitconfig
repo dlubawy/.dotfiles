@@ -1,0 +1,35 @@
+[user]
+	email = EMAIL
+	name = Andrew Lubawy
+
+[core]
+    editor = vim
+    excludesfiles = ~/.gitignore_global
+
+    # Treat spaces before tabs and all kinds of trailing whitespace as an error
+    # [default] trailing-space: looks for spaces at the end of a line
+    # [default] space-before-tab: looks for spaces before tabs at the beginning of a line
+    whitespace = space-before-tab,-indent-with-non-tab,trailing-space
+
+[apply]
+    # Detect whitespace errors when applying a patch
+    whitespace = fix
+
+[color]
+    diff = auto
+    status = auto
+    branch = auto
+    interactive = auto
+    ui = true
+    page = true
+
+[push]
+	default = simple
+    # Make `git push` push relevant annotated tags when pushing branches out.
+    followTags = true
+
+[merge "ours"]
+	driver = true
+
+# Emojify support: https://github.com/mrowa44/emojify
+log = ! git log --oneline --color | emojify | less -r

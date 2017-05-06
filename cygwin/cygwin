@@ -1,0 +1,4 @@
+export PATH=~/.dotfiles/cygwin/bin/:$PATH
+alias heroku='/cygdrive/c/"Program Files (x86)"/Heroku/bin/heroku.bat'
+
+# vim: set filetype=sh:
