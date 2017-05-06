@@ -31,7 +31,6 @@
     ~/.profile:
     ~/.scmbrc:
     ~/.scm_breeze:
-    ~/.tmux-plugins:
     ~/.tmux.conf:
     ~/.tmux.style.conf:
     ~/.tmuxp:
@@ -51,5 +50,11 @@
       command: "echo Install Vundle? [y/N] && \
                 read var && \
                 if [ var = 'y' ];then git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim;fi"
+      stdin: true
+      stdout: true
+    -
+      command: "echo Install Tmux Plugn Magager? [y/N] && \
+                read var && \
+                if [ var = 'y' ];then git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm;fi"
       stdin: true
       stdout: true
