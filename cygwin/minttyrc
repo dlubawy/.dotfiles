@@ -2,6 +2,6 @@ BoldAsFont=yes
 FontHeight=11
 CursorType=block
 Term=xterm-256color
-Transparency=off
+Transparency=low
 Font=Fantasque Sans Mono
 BellType=0
