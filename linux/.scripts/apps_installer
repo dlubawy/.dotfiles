@@ -1,5 +1,6 @@
 #!/bin/bash
 
+echo Updating OS...
 sudo apt-get -qq update
 sudo apt-get -qq -y dist-upgrade
 
@@ -13,6 +14,9 @@ apt_packages+=(
     cmatrix
     cowsay
     curl
+    default-jdk
+    default-jre
+    gimp
     git
     golang
     groff
@@ -21,13 +25,17 @@ apt_packages+=(
     id3tool
     imagemagick
     jq
+    keepass2
+    libreoffice
     mercurial
     nmap
+    pidgin
     postgresql
     python-dev
     python3-dev
     python-pip
     python3-pip
+    redshift
     vim
     virtualenv
     silversearcher-ag
@@ -36,13 +44,16 @@ apt_packages+=(
     telnet
     tmux
     tree
+    vncviewer
 )
 
 # Chrome
+echo Downloading Chrome...
 wget -O ~/Downloads/google-chrome-stable_current_amd64.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 apt_packages+=(~/Downloads/google-chrome-stable_current_amd64.deb)
 
 # Spotify
+echo Adding Spotify to APT...
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys BBEBDCB318AD50EC6865090613B00F1FD2C19886
 echo deb http://repository.spotify.com stable non-free | sudo tee /etc/apt/sources.list.d/spotify.list
 apt_packages+=(spotify-client)
@@ -55,4 +66,10 @@ if (( ${#apt_packages[@]} > 0 )); then
     done
 fi
 
+echo Installing tmuxp...
 pip3 install tmuxp
+
+echo Installing PIA...
+wget -O ~/Downloads/pia-v70-installer-linux.tar.gz https://installers.privateinternetaccess.com/download/pia-v70-installer-linux.tar.gz
+tar xzf ~/Downloads/pia-v70-installer-linux.tar.gz
+~/Downloads/pia-v70-installer-linux.sh
