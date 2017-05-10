@@ -1,0 +1,10 @@
+#!/bin/bash
+
+echo Name?
+read NAME
+echo Email?
+read EMAIL
+
+cp ~/.dotfiles/gitconfig ~/.dotfiles/gitconfig_local
+sed -i -e s/EMAIL/$EMAIL/g ~/.dotfiles/gitconfig_local
+sed -i -e s/EMAIL/$NAME/g ~/.dotfiles/gitconfig_local

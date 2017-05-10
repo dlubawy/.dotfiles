@@ -1,6 +1,6 @@
 [user]
 	email = EMAIL
-	name = Andrew Lubawy
+	name = NAME
 
 [core]
     editor = vim

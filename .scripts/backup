@@ -1,0 +1,31 @@
+#!/bin/bash
+
+files=()
+files+=(~/.aliases
+        ~/.bash_completion
+        ~/.bash-git-prompt
+        ~/.bash_profile
+        ~/.bash_prompt
+        ~/.bashrc
+        ~/.exports
+        ~/.fonts
+        ~/.functions
+        ~/.gdbinit
+        ~/.gitconfig
+        ~/.git.scmbrc
+        ~/.inputrc
+        ~/.path
+        ~/.profile
+        ~/.scmbrc
+        ~/.scm_breeze
+        ~/.tmux.conf
+        ~/.tmux.style.conf
+        ~/.tmuxp
+        ~/.vimrc)
+
+mkdir -p ~/.dotfiles/.local_backups
+for file in ${files[@]}; do
+    if [ -f $file ]; then
+        cp -r $file ~/.dotfiles/.local_backups
+    fi
+done

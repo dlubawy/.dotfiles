@@ -12,6 +12,6 @@
     -
       command: "echo install apps? [y/N] && \
                 read var && \
-                if [ $var = 'y' ];then ~/.dotfiles/linux/apps_installer;fi"
+                if [ $var = 'y' ];then ~/.dotfiles/linux/.scripts/apps_installer;fi"
       stdin: true
       stdout: true

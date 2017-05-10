@@ -8,7 +8,13 @@
     -
       command: "echo Perform backup? [y/N] && \
                 read var && \
-                if [ $var = 'y' ];then cp -r ~/.* ~/.dotfiles/.local_backups;fi"
+                if [ $var = 'y' ];then ~/.dotfiles/.scripts/backup" 
+      stdin: true
+      stdout: true
+    -
+      command: "echo Setup gitconfig? [y/N] && \
+                read var && \
+                if [ $var = 'y' ];then ~/.dotfiles/.scripts/gitconfig" 
       stdin: true
       stdout: true
 
