@@ -1,3 +1,4 @@
 export PATH=~/.dotfiles/bin/:$PATH
+export PATH=/usr/local/go/bin/:$PATH
 
 # vim: set filetype=sh:
