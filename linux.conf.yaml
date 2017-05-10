@@ -10,8 +10,8 @@
 
 - shell:
     -
-      command: "echo install ag? [y/N] && \
+      command: "echo install apps? [y/N] && \
                 read var && \
-                if [ $var = 'y' ];then apt-get -y install silversearcher-ag;fi"
+                if [ $var = 'y' ];then ~/.dotfiles/linux/apps_installer;fi"
       stdin: true
       stdout: true
