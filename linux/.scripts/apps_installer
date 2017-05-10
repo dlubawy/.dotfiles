@@ -1,57 +1,58 @@
 #!/bin/bash
 
-sudo apt-get update
-sudo apt-get -y dist-upgrade
+sudo apt-get -qq update
+sudo apt-get -qq -y dist-upgrade
 
 apt_packages=()
 
 # Misc.
-    apt_packages+=(
-            awscli
-            build-essential
-            cmake
-            cmatrix
-            cowsay
-            curl
-            git
-            groff
-            hollywood
-            htop
-            id3tool
-            imagemagick
-            jq
-            mercurial
-            nmap
-            postgresql
-            python-dev
-            python3-dev
-            python-pip
-            python3-pip
-            vim
-            virtualenv
-            silversearcher-ag
-            sl
-            steam
-            telnet
-            tmux
-            tree
-    )
+apt_packages+=(
+    awscli
+    build-essential
+    cmake
+    cmatrix
+    cowsay
+    curl
+    git
+    golang
+    groff
+    hollywood
+    htop
+    id3tool
+    imagemagick
+    jq
+    mercurial
+    nmap
+    postgresql
+    python-dev
+    python3-dev
+    python-pip
+    python3-pip
+    vim
+    virtualenv
+    silversearcher-ag
+    sl
+    steam
+    telnet
+    tmux
+    tree
+)
 
 # Chrome
-    wget -O ~/Downloads/google-chrome-stable_current_amd64.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-    apt_packages+=(~/Downloads/google-chrome-stable_current_amd64.deb)
+wget -O ~/Downloads/google-chrome-stable_current_amd64.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+apt_packages+=(~/Downloads/google-chrome-stable_current_amd64.deb)
 
 # Spotify
-    sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys BBEBDCB318AD50EC6865090613B00F1FD2C19886
-    echo deb http://repository.spotify.com stable non-free | sudo tee /etc/apt/sources.list.d/spotify.list
-    apt_packages+=(spotify-client)
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys BBEBDCB318AD50EC6865090613B00F1FD2C19886
+echo deb http://repository.spotify.com stable non-free | sudo tee /etc/apt/sources.list.d/spotify.list
+apt_packages+=(spotify-client)
 
 if (( ${#apt_packages[@]} > 0 )); then
-  echo "Installing APT packages (${#apt_packages[@]})"
-  for package in "${apt_packages[@]}"; do
-    echo '> "$package"'
-    sudo apt-get -y install "$package"
-  done
+    echo "Installing APT packages (${#apt_packages[@]})"
+    for package in "${apt_packages[@]}"; do
+        echo '> "$package"'
+        sudo apt-get -y install "$package"
+    done
 fi
 
 pip3 install tmuxp
