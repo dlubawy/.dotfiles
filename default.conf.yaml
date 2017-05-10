@@ -2,19 +2,19 @@
     link:
         relink: true
         # Uncomment to force linking.
-        #force: true
+        force: true
 
 - shell:
     -
       command: "echo Perform backup? [y/N] && \
                 read var && \
-                if [ $var = 'y' ];then ~/.dotfiles/.scripts/backup" 
+                if [ $var = 'y' ];then ~/.dotfiles/.scripts/backup;fi" 
       stdin: true
       stdout: true
     -
       command: "echo Setup gitconfig? [y/N] && \
                 read var && \
-                if [ $var = 'y' ];then ~/.dotfiles/.scripts/gitconfig" 
+                if [ $var = 'y' ];then ~/.dotfiles/.scripts/gitconfig;fi" 
       stdin: true
       stdout: true
 
