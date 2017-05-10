@@ -61,7 +61,7 @@ apt_packages+=(spotify-client)
 if (( ${#apt_packages[@]} > 0 )); then
     echo "Installing APT packages (${#apt_packages[@]})"
     for package in "${apt_packages[@]}"; do
-        echo '> "$package"'
+        echo "> $package"
         sudo apt-get -y install "$package"
     done
 fi
