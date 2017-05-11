@@ -26,6 +26,9 @@ alias la="ls -lah"
 # List only directories
 alias lsd='ls -lh | grep "^d"'
 
+# List with grep
+alias lg='ls -la | grep'
+
 # URL-encode strings
 alias urlencode='python2 -c "import sys, urllib as ul; print ul.quote_plus(sys.argv[1]);"'
 
@@ -33,9 +36,9 @@ alias urlencode='python2 -c "import sys, urllib as ul; print ul.quote_plus(sys.a
 alias path='echo -e ${PATH//:/\\n}'
 
 # Dotfiles shortcut
-alias dots='cd ~/.dotfiles'
+alias dots='cd ~/.dotfiles && ./.scripts/reset_scm'
 alias ali='vim ~/.dotfiles/aliases'
-alias dotup='cd ~/.dotfiles && ./install && cd -'
+alias scme='~/.dotfiles/scm_breeze/install.sh'
 
 # Rails specific
 alias b='bundle'
@@ -53,6 +56,7 @@ alias tp='tmuxp load'
 alias ssh='TERM=xterm ssh'
 
 # For those times
+alias yolo='kill -9'
 alias wtf='ping google.com'
 alias timenow='date +"%s"'
 
@@ -70,6 +74,8 @@ alias pip=pip3
 alias git=hub
 
 # signal aliases: just give them a pid
-alias quit='kill -s QUIT'
+alias quit='kill -3'
+
+alias tf='tail -f'
 
 # vim: set filetype=sh:
