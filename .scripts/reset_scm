@@ -1,0 +1,4 @@
+#!/bin/bash
+
+git checkout bashrc
+git checkout bash_profile
