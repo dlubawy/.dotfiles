@@ -10,8 +10,11 @@ apt_packages+=(
     cmatrix
     cowsay
     curl
+    dconf-cli
     default-jdk
     default-jre
+    fortune
+    gcc
     gimp
     glances
     golang
@@ -23,6 +26,7 @@ apt_packages+=(
     jq
     keepass2
     libreoffice
+    lolcat
     mercurial
     nmap
     openssh-server
@@ -43,7 +47,10 @@ apt_packages+=(
     telnet
     tmux
     tree
+    ttyrec
     vncviewer
+    x11-apps
+    xdotool
 )
 
 # Chrome
@@ -77,7 +84,21 @@ wget -O ~/Downloads/pia-v70-installer-linux.tar.gz https://installers.privateint
 tar xzf ~/Downloads/pia-v70-installer-linux.tar.gz -C ~/Downloads/
 ~/Downloads/pia-v70-installer-linux.sh
 
+e_header "Installing Gruvbox terminal theme..."
+wget -O xt  http://git.io/v6JYg && chmod +x xt && ./xt && rm xt
+
+e_header "Installing emoji (;"
+sudo sh -c "curl https://raw.githubusercontent.com/mrowa44/emojify/master/emojify -o /usr/local/bin/emojify && chmod +x /usr/local/bin/emojify"
+
+e_header "Installing ttygif..."
+git clone https://github.com/icholy/ttygif.git ~/Downloads/ttygif
+cd ~/Downloads/ttygif
+make
+sudo make install
+cd -
+
 e_header "Cleaning up files..."
 rm -rf ~/Downloads/google-chrome-stable_current_amd64.deb
 rm -rf ~/Downloads/pia-v70-installer-linux.tar.gz
 rm -rf ~/Downloads/pia-v70-installer-linux.sh
+rm -rf ~/Downloads/ttygif
