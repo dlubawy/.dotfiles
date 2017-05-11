@@ -1,8 +1,10 @@
+source $(which shml.sh)
+
 # Logging stuff.
-function e_header()   { echo -e "\n\033[1m$@\033[0m"; }
-function e_success()  { echo -e " \033[1;32m✔\033[0m  $@"; }
-function e_error()    { echo -e " \033[1;31m✖\033[0m  $@"; }
-function e_arrow()    { echo -e " \033[1;34m➜\033[0m  $@"; }
+function e_header()   { echo -e "$(c white)$(a bold $@)$(br)$(hr)"; }
+function e_success()  { echo -e " $(c green)$(a bold "\r $(icon check)") $@"; }
+function e_error()    { echo -e " $(c red)$(a bold "\r $(icon x)") $@"; }
+function e_arrow()    { echo -ne " $(c blue)$(a bold →) $@"; }
 
 # Create a new directory and enter it
 function mkd() {
