@@ -28,6 +28,7 @@ apt_packages+=(
     libreoffice
     lolcat
     mercurial
+    mono-complete
     nmap
     openssh-server
     pidgin
@@ -38,6 +39,7 @@ apt_packages+=(
     python3-pip
     qbittorrent
     redshift
+    redshift-gtk
     vim
     virtualenv
     vlc
@@ -97,8 +99,21 @@ make
 sudo make install
 cd -
 
+e_header "Install Keepass2 things..."
+wget -O ~/Downloads/GoogleSyncPlugin-2.1.2.zip https://downloads.sourceforge.net/project/kp-googlesync/GoogleSyncPlugin-2.x/GoogleSyncPlugin-2.1.2.zip
+wget -O ~/Downloads/log4net-2.0.8-bin-newkey.zip http://apache.osuosl.org//logging/log4net/binaries/log4net-2.0.8-bin-newkey.zip
+unzip -d ~/Downloads/ ~/Downloads/GoogleSyncPlugin-2.1.2.zip
+unzip -d ~/Downloads/ ~/Downloads/log4net-2.0.8-bin-newkey.zip
+sudo cp ~/Downloads/GoogleSyncPlugin.plgx /usr/lib/keepass2/
+sudo cp ~/Downloads/log4net-2.0.8/bin/mono/2.0/release/log4net.dll /usr/lib/keepass2/
+sudo cp /usr/lib/mono/2.0/System.ServiceModel.Web.dll /usr/lib/keepass2/
+
 e_header "Cleaning up files..."
 rm -rf ~/Downloads/google-chrome-stable_current_amd64.deb
 rm -rf ~/Downloads/pia-v70-installer-linux.tar.gz
 rm -rf ~/Downloads/pia-v70-installer-linux.sh
 rm -rf ~/Downloads/ttygif
+rm -rf ~/Downloads/Google*
+rm -rf ~/Downloads/readme*
+rm -rf ~/Downloads/gpl*
+rm -rf ~/Downloads/log*

@@ -38,3 +38,6 @@ fi
 if [ -f ~/.linux ]; then
     . ~/.linux
 fi
+
+# Git improvements
+[ -s "/home/Drew/.scm_breeze/scm_breeze.sh" ] && source "/home/Drew/.scm_breeze/scm_breeze.sh"

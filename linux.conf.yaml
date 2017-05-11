@@ -1,7 +1,6 @@
 - defaults:
     link:
         relink: true
-        # Uncomment to force linking.
         force: true
 
 - link:
@@ -10,7 +9,7 @@
 
 - shell:
     -
-      command: "echo install apps? [y/N] && \
+      command: "echo Install apps? [y/N] && \
                 read var && \
                 if [ $var = 'y' ];then ~/.dotfiles/linux/.scripts/apps_installer;fi"
       stdin: true

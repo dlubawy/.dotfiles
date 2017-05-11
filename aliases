@@ -68,6 +68,8 @@ alias pip=pip3
 
 # Git improvements
 alias git=hub
-[ -s "/home/Drew/.scm_breeze/scm_breeze.sh" ] && source "/home/Drew/.scm_breeze/scm_breeze.sh"
+
+# signal aliases: just give them a pid
+alias quit='kill -s QUIT'
 
 # vim: set filetype=sh:

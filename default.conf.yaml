@@ -1,7 +1,6 @@
 - defaults:
     link:
         relink: true
-        # Uncomment to force linking.
         force: true
 
 - shell:
@@ -53,6 +52,8 @@
     - mkdir -p ~/projects
     - mkdir -p ~/Downloads
     - mkdir -p ~/Desktop
+    - ~/.dotfiles/scm_breeze/install.sh
+    - if [ -f ~/.dotfiles/scm_breeze/scm_breeze ]; then rm ~/.dotfiles/scm_breeze/scm_breeze; fi
     -
       command: "echo Install Vundle? [y/N] && \
                 read var && \

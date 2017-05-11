@@ -1,8 +1,7 @@
 - defaults:
     link:
         relink: true
-        # Uncomment to force linking.
-        #force: true
+        force: true
 
 - link:
     ~/.cygwin: cygwin/cygwin
