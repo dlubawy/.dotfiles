@@ -119,7 +119,7 @@ unzip -d ~/Downloads/ ~/Downloads/GoogleSyncPlugin-2.1.2.zip
 unzip -d ~/Downloads/ ~/Downloads/log4net-2.0.8-bin-newkey.zip
 sudo cp ~/Downloads/GoogleSyncPlugin.plgx /usr/lib/keepass2/
 sudo cp ~/Downloads/log4net-2.0.8/bin/mono/2.0/release/log4net.dll /usr/lib/keepass2/
-sudo cp /usr/lib/mono/2.0/System.ServiceModel.Web.dll /usr/lib/keepass2/
+sudo cp ~/.dotfiles/linux/.lib/System.ServiceModel.Web.dll /usr/lib/keepass2/
 e_success "Keepass2 installed"
 
 files=()
