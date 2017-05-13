@@ -123,23 +123,13 @@ sudo cp ~/Downloads/log4net-2.0.8/bin/mono/2.0/release/log4net.dll /usr/lib/keep
 sudo cp ~/.dotfiles/linux/.lib/System.ServiceModel.Web.dll /usr/lib/keepass2/
 e_success "Keepass2 installed"
 
-files=()
-files+=(
-google-chrome-stable_current_amd64.deb
-pia-v70-installer-linux.tar.gz
-pia-v70-installer-linux.sh
-ttygif
-Google*
-readme*
-gpl*
-log*
-)
-
 e_header "Cleaning up files"
-i=0
-for f in $files[@]; do
-    rm -rf ~/Downloads/$f;
-    echo $i;
-    i=$i+1
-done | progress "$(c red)Removing files:" 7
+rm -rf ~/Downloads/google-chrome-stable_current_amd64.deb
+rm -rf ~/Downloads/pia-v70-installer-linux.tar.gz
+rm -rf ~/Downloads/pia-v70-installer-linux.sh
+rm -rf ~/Downloads/ttygif
+rm -rf ~/Downloads/Google*
+rm -rf ~/Downloads/readme*
+rm -rf ~/Downloads/gpl*
+rm -rf ~/Downloads/log*
 e_success "Files cleaned"
