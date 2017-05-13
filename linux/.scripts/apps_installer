@@ -31,6 +31,7 @@ apt_packages+=(
     lolcat
     mercurial
     mono-complete
+    neofetch
     nmap
     openssh-server
     pidgin

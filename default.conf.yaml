@@ -49,7 +49,7 @@
                 if [ $var = 'y' ];then cp ~/.dotfiles/extra ~/.extra;fi"
       stdin: true
       stdout: true
-    - mkdir -p ~/projects
+    - mkdir -p ~/Projects
     - mkdir -p ~/Downloads
     - mkdir -p ~/Desktop
     - ~/.dotfiles/scm_breeze/install.sh

@@ -13,7 +13,6 @@
     - ln -s /cygdrive/c/Users/Drew/Downloads ~/
     - rm -rf ~/Desktop
     - ln -s /cygdrive/c/Users/Drew/Desktop ~/
-    - mkdir -p ~/projects
     -
       command: "echo Install apt-cyg? [y/N] && \
                     read var && \
