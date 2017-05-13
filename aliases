@@ -38,7 +38,7 @@ alias path='echo -e ${PATH//:/\\n}'
 # Dotfiles shortcut
 alias dots='cd ~/.dotfiles && ./.scripts/reset_scm'
 alias ali='vim ~/.dotfiles/aliases'
-alias scme='~/.dotfiles/scm_breeze/install.sh'
+alias scme='~/.dotfiles/scm_breeze/install.sh && src'
 
 # Rails specific
 alias b='bundle'
