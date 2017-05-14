@@ -1,0 +1,10 @@
+export PATH=~/.dotfiles/linux/bin/:$PATH
+export WINDOWID=$(xdotool getwindowfocus)
+
+# Package management
+alias update="sudo pacman -Syu"
+alias install="sudo pacman -S"
+alias remove="sudo pacman -Rs"
+alias search="pacsearch"
+
+# vim:set filetype=sh:

@@ -1,0 +1,141 @@
+#!/usr/bin/env bash
+
+source $(which shml.sh)
+
+pacman_packages=()
+
+# Misc.
+pacman_packages+=(
+    base-devel
+    cmake
+    cmatrix
+    cowsay
+    curl
+    dconf
+    dconf-editor
+    jdk8-openjdk
+    jre8-openjdk
+    fortune-mod
+    gcc
+    gimp
+    glances
+    go
+    groff
+    htop
+    imagemagick
+    inetutils
+    jq
+    keepass
+    libreoffice-fresh
+    lolcat
+    mercurial
+    mono
+    mono-addins
+    mono-basic
+    monodevelop
+    nmap
+    openssh
+    pidgin
+    postgresql
+    python
+    python2
+    python-pip
+    python2-pip
+    qbittorrent
+    redshift
+    vim
+    gvim
+    python-virtualenv
+    vlc
+    the_silver_searcher
+    sl
+    steam
+    tigervnc
+    tmux
+    tree
+    xdotool
+)
+
+e_header "Updating OS"
+revolver --style simpleDots start
+sudo pacman -Syu
+revolver stop
+e_success "OS updated"
+
+if (( ${#pacman_packages[@]} > 0 )); then
+    e_header "Installing pacman packages"
+    for package in "${pacman_packages[@]}"; do
+        revolver --style line start "$package"
+        sudo pacman -S "$package"
+    done
+    e_success "pacman packages installed"
+fi
+
+# Chrome
+e_header "Installing Chrome"
+sudo git clone https://aur.archlinux.org/google-chrome.git /opt/google-chrome/
+cd /opt/google-chrome
+mkpkg -si
+cd -
+e_success "Chrome installed"
+
+# Spotify
+e_header "Installing Spotify"
+sudo git clone https://aur.archlinux.org/spotify.git /opt/spotify
+cd /opt/spotify
+mkpkg -si
+cd -
+e_success "Spotify installed"
+
+e_header "Installing tmuxp"
+pip3 install tmuxp
+e_success "tmuxp installed"
+
+e_header "Installing PIA"
+wget -O ~/Downloads/pia-v70-installer-linux.tar.gz https://installers.privateinternetaccess.com/download/pia-v70-installer-linux.tar.gz
+tar xzf ~/Downloads/pia-v70-installer-linux.tar.gz -C ~/Downloads/
+~/Downloads/pia-v70-installer-linux.sh
+e_success "PIA installed"
+
+e_header "Installing Gruvbox terminal theme"
+wget -O xt  http://git.io/v6JYg && chmod +x xt && ./xt && rm xt
+e_success "Gruvbox theme installed"
+
+e_header "Installing Emojify (;"
+sudo sh -c "curl https://raw.githubusercontent.com/mrowa44/emojify/master/emojify -o /usr/local/bin/emojify && chmod +x /usr/local/bin/emojify"
+e_success "Emojify installed $(emojify ":thumbsup:")"
+
+e_header "Installing ttyrec"
+sudo git clone https://aur.archlinux.org/ttyrec.git /opt/ttyrec
+cd /opt/ttyrec
+mkpkg -si
+cd -
+e_success "ttyrec installed"
+
+e_header "Installing ttygif"
+sudo git clone https://aur.archlinux.org/ttygif.git /opt/ttygif
+cd /opt/ttygif
+mkpkg -si
+cd -
+e_success "ttygif installed"
+
+e_header "Install Keepass2 things"
+wget -O ~/Downloads/GoogleSyncPlugin-2.1.2.zip https://downloads.sourceforge.net/project/kp-googlesync/GoogleSyncPlugin-2.x/GoogleSyncPlugin-2.1.2.zip
+wget -O ~/Downloads/log4net-2.0.8-bin-newkey.zip http://apache.osuosl.org//logging/log4net/binaries/log4net-2.0.8-bin-newkey.zip
+unzip -d ~/Downloads/ ~/Downloads/GoogleSyncPlugin-2.1.2.zip
+unzip -d ~/Downloads/ ~/Downloads/log4net-2.0.8-bin-newkey.zip
+sudo cp ~/Downloads/GoogleSyncPlugin.plgx /usr/lib/keepass2/
+sudo cp ~/Downloads/log4net-2.0.8/bin/mono/2.0/release/log4net.dll /usr/lib/keepass2/
+sudo cp ~/.dotfiles/linux/.lib/System.ServiceModel.Web.dll /usr/lib/keepass2/
+e_success "Keepass2 installed"
+
+e_header "Installing neofetch"
+sudo git clone https://aur.archlinux.org/neofetch.git /opt/neofetch
+cd /opt/neofetch
+mkpkg -si
+cd -
+e_success "neofetch installed"
+
+e_header "Cleaning up files"
+rm -rf ~/Downloads/*
+e_success "Files cleaned"
