@@ -44,6 +44,7 @@ apt_packages+=(
     redshift
     redshift-gtk
     vim
+    vim-gtk
     virtualenv
     vlc
     silversearcher-ag
