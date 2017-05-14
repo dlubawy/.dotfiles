@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+export PATH=~/.dotfiles/bin/:$PATH
 source $(which shml.sh)
 
 pacman_packages=()
@@ -75,7 +76,7 @@ fi
 e_header "Installing Chrome"
 sudo git clone https://aur.archlinux.org/google-chrome.git /opt/google-chrome/
 cd /opt/google-chrome
-sudo mkpkg -si
+makepkg -si
 cd -
 e_success "Chrome installed"
 
@@ -83,7 +84,7 @@ e_success "Chrome installed"
 e_header "Installing Spotify"
 sudo git clone https://aur.archlinux.org/spotify.git /opt/spotify
 cd /opt/spotify
-sudo mkpkg -si
+makepkg -si
 cd -
 e_success "Spotify installed"
 
@@ -108,14 +109,14 @@ e_success "Emojify installed $(emojify ":thumbsup:")"
 e_header "Installing ttyrec"
 sudo git clone https://aur.archlinux.org/ttyrec.git /opt/ttyrec
 cd /opt/ttyrec
-sudo mkpkg -si
+makepkg -si
 cd -
 e_success "ttyrec installed"
 
 e_header "Installing ttygif"
 sudo git clone https://aur.archlinux.org/ttygif.git /opt/ttygif
 cd /opt/ttygif
-sudo mkpkg -si
+makepkg -si
 cd -
 e_success "ttygif installed"
 
@@ -132,7 +133,7 @@ e_success "Keepass2 installed"
 e_header "Installing neofetch"
 sudo git clone https://aur.archlinux.org/neofetch.git /opt/neofetch
 cd /opt/neofetch
-sudo mkpkg -si
+makepkg -si
 cd -
 e_success "neofetch installed"
 
