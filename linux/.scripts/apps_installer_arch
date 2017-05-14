@@ -58,7 +58,7 @@ pacman_packages+=(
 
 e_header "Updating OS"
 revolver --style simpleDots start
-sudo pacman -Syu
+sudo pacman --noconfirm -Syu
 revolver stop
 e_success "OS updated"
 
@@ -66,7 +66,7 @@ if (( ${#pacman_packages[@]} > 0 )); then
     e_header "Installing pacman packages"
     for package in "${pacman_packages[@]}"; do
         revolver --style line start "$package"
-        sudo pacman -S "$package"
+        sudo pacman --noconfirm -S "$package"
     done
     e_success "pacman packages installed"
 fi
