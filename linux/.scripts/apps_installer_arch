@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
-export PATH=~/.dotfiles/bin/:$PATH
-source $(which shml.sh)
+source ~/.dotfiles/bin/shml.sh
 
 pacman_packages=()
 
@@ -44,7 +43,6 @@ pacman_packages+=(
     python2-pip
     qbittorrent
     redshift
-    vim
     gvim
     python-virtualenv
     vlc
@@ -54,12 +52,14 @@ pacman_packages+=(
     tigervnc
     tmux
     tree
+    unzip
+    wget
     xdotool
 )
 
 e_header "Updating OS"
 revolver --style simpleDots start
-sudo pacman --noconfirm -Syu
+sudo pacman -Syu --noconfirm
 revolver stop
 e_success "OS updated"
 
@@ -67,55 +67,65 @@ if (( ${#pacman_packages[@]} > 0 )); then
     e_header "Installing pacman packages"
     for package in "${pacman_packages[@]}"; do
         revolver --style line start "$package"
-        sudo pacman --noconfirm -S "$package"
+        sudo pacman -S --noconfirm "$package"
     done
     e_success "pacman packages installed"
 fi
 
+e_header "Making AUR directory"
+mkdir ~/.opt
+
 # Chrome
 e_header "Installing Chrome"
-sudo git clone https://aur.archlinux.org/google-chrome.git /opt/google-chrome/
-cd /opt/google-chrome
+git clone https://aur.archlinux.org/google-chrome.git ~/.opt/google-chrome/
+cd ~/.opt/google-chrome
 makepkg -si
 cd -
 e_success "Chrome installed"
 
 # Spotify
 e_header "Installing Spotify"
-sudo git clone https://aur.archlinux.org/spotify.git /opt/spotify
-cd /opt/spotify
+git clone https://aur.archlinux.org/libopenssl-1.0-compat.git ~/.opt/libopenssl
+cd ~/.opt/libopenssl
+gpg --recv-keys --keyserver hkp://pgp.mit.edu D9C4D26D0E604491
+makepkg -si
+cd -
+git clone https://aur.archlinux.org/libcurl-openssl-1.0.git ~/.opt/libcurl
+cd ~/.opt/libcurl
+gpg --recv-keys 5CC908FDB71E12C2
+makepkg -si
+cd -
+git clone https://aur.archlinux.org/spotify.git ~/.opt/spotify
+cd ~/.opt/spotify
 makepkg -si
 cd -
 e_success "Spotify installed"
 
 e_header "Installing tmuxp"
-pip3 install tmuxp
+pip3 install --user tmuxp
 e_success "tmuxp installed"
 
 e_header "Installing PIA"
-wget -O ~/Downloads/pia-v70-installer-linux.tar.gz https://installers.privateinternetaccess.com/download/pia-v70-installer-linux.tar.gz
-tar xzf ~/Downloads/pia-v70-installer-linux.tar.gz -C ~/Downloads/
-~/Downloads/pia-v70-installer-linux.sh
+git clone https://aur.archlinux.org/private-internet-access-vpn.git ~/.opt/pia
+cd ~/.opt/pia
+makepkg -si
+cd -
 e_success "PIA installed"
-
-e_header "Installing Gruvbox terminal theme"
-wget -O xt  http://git.io/v6JYg && chmod +x xt && ./xt && rm xt
-e_success "Gruvbox theme installed"
 
 e_header "Installing Emojify (;"
 sudo sh -c "curl https://raw.githubusercontent.com/mrowa44/emojify/master/emojify -o /usr/local/bin/emojify && chmod +x /usr/local/bin/emojify"
 e_success "Emojify installed $(emojify ":thumbsup:")"
 
 e_header "Installing ttyrec"
-sudo git clone https://aur.archlinux.org/ttyrec.git /opt/ttyrec
-cd /opt/ttyrec
+git clone https://aur.archlinux.org/ttyrec.git ~/.opt/ttyrec
+cd ~/.opt/ttyrec
 makepkg -si
 cd -
 e_success "ttyrec installed"
 
 e_header "Installing ttygif"
-sudo git clone https://aur.archlinux.org/ttygif.git /opt/ttygif
-cd /opt/ttygif
+git clone https://aur.archlinux.org/ttygif.git ~/.opt/ttygif
+cd ~/.opt/ttygif
 makepkg -si
 cd -
 e_success "ttygif installed"
@@ -125,14 +135,14 @@ wget -O ~/Downloads/GoogleSyncPlugin-2.1.2.zip https://downloads.sourceforge.net
 wget -O ~/Downloads/log4net-2.0.8-bin-newkey.zip http://apache.osuosl.org//logging/log4net/binaries/log4net-2.0.8-bin-newkey.zip
 unzip -d ~/Downloads/ ~/Downloads/GoogleSyncPlugin-2.1.2.zip
 unzip -d ~/Downloads/ ~/Downloads/log4net-2.0.8-bin-newkey.zip
-sudo cp ~/Downloads/GoogleSyncPlugin.plgx /usr/lib/keepass2/
-sudo cp ~/Downloads/log4net-2.0.8/bin/mono/2.0/release/log4net.dll /usr/lib/keepass2/
-sudo cp ~/.dotfiles/linux/.lib/System.ServiceModel.Web.dll /usr/lib/keepass2/
+sudo cp ~/Downloads/GoogleSyncPlugin.plgx /usr/share/keepass/Plugins
+sudo cp ~/Downloads/log4net-2.0.8/bin/mono/2.0/release/log4net.dll /usr/share/keepass/Plugins
+sudo cp ~/.dotfiles/linux/.lib/System.ServiceModel.Web.dll /usr/share/keepass/Plugins
 e_success "Keepass2 installed"
 
 e_header "Installing neofetch"
-sudo git clone https://aur.archlinux.org/neofetch.git /opt/neofetch
-cd /opt/neofetch
+git clone https://aur.archlinux.org/neofetch.git ~/.opt/neofetch
+cd ~/.opt/neofetch
 makepkg -si
 cd -
 e_success "neofetch installed"
