@@ -43,7 +43,7 @@
     ~/.vimrc:
 
 - shell:
-    - 
+    -
       command: "echo Add extra file? [y/N] && \
                 read var && \
                 if [ $var = 'y' ];then cp ~/.dotfiles/extra ~/.extra;fi"
