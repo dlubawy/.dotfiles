@@ -6,6 +6,7 @@
 - link:
     ~/.linux: linux/linux
     ~/.gitignore_global: linux/gitignore_global
+    ~/.themes: linux/themes
 
 - shell:
     -
