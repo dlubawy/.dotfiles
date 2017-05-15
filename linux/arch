@@ -7,4 +7,23 @@ alias install="sudo pacman -S"
 alias remove="sudo pacman -Rs"
 alias search="pacsearch"
 
+# Install a package from AUR
+function aurstall() {
+    git clone https://aur.archlinux.org/$@.git ~/.opt/$@;
+    cd ~/.opt/$@;
+    makepkg -si;
+    cd -
+}
+
+# Remove an AUR package and delete its source
+function auremove() {
+    sudo pacman -Rs $@;
+    rm -rf ~/.opt/$@;
+}
+
+# Search the AUR repo for a package
+function aursearch() {
+    curl -G -d "/rpc/?v=5&type=search&by=name&arg=$@" https://aur.archlinux.org/rpc.php | jq -r '.results';
+}
+
 # vim:set filetype=sh:
