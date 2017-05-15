@@ -82,6 +82,17 @@ sudo make install
 cd -
 e_success "ttygif installed"
 
+e_header "Installing Reddit Terminal Viewer"
+pip install rtv
+e_success "Installed rtv"
+
+e_header "Installing pipes.sh"
+git clone https://github.com/pipeseroni/pipes.sh.git ~/Downloads/pipes
+cd ~/Downloads/pipes
+sudo make install
+cd -
+e_success "pipes.sh installed"
+
 e_header "Cleaning up files"
 rm -rf ~/Downloads/*
 e_success "Files cleaned"

@@ -153,6 +153,13 @@ cd ~/Downloads/pipes
 sudo make install
 cd -
 
+e_header "Installing Reddit Terminal Viewer"
+git clone https://aur.archlinux.org/rtv-git.git ~/.opt/rtv
+cd ~/.opt/rtv
+makepkg -si
+cd -
+e_success "rtv installed"
+
 e_header "Cleaning up files"
 rm -rf ~/Downloads/*
 e_success "Files cleaned"
