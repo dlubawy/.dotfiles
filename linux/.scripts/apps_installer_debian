@@ -1,0 +1,135 @@
+#!/usr/bin/env bash
+
+source ~/.dotfiles/bin/shml.sh
+
+apt_packages=()
+
+# Misc.
+apt_packages+=(
+    build-essential
+    cmake
+    cmatrix
+    cowsay
+    curl
+    dconf-cli
+    default-jdk
+    default-jre
+    fortune
+    gcc
+    gimp
+    glances
+    golang
+    groff
+    hollywood
+    htop
+    id3tool
+    imagemagick
+    jq
+    keepass2
+    libreoffice
+    lolcat
+    mercurial
+    mono-complete
+    neofetch
+    nmap
+    openssh-server
+    pidgin
+    postgresql
+    python-dev
+    python3-dev
+    python-pip
+    python3-pip
+    qbittorrent
+    redshift
+    redshift-gtk
+    vim
+    vim-gtk
+    virtualenv
+    vlc
+    silversearcher-ag
+    sl
+    steam
+    telnet
+    tmux
+    tree
+    ttyrec
+    vncviewer
+    x11-apps
+    xdotool
+)
+
+# Chrome
+e_header "Downloading Chrome"
+wget -O ~/Downloads/google-chrome-stable_current_amd64.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+apt_packages+=(~/Downloads/google-chrome-stable_current_amd64.deb)
+e_success "Chrome downloaded"
+
+# Spotify
+e_header "Adding Spotify to APT"
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys BBEBDCB318AD50EC6865090613B00F1FD2C19886
+echo deb http://repository.spotify.com stable non-free | sudo tee /etc/apt/sources.list.d/spotify.list
+apt_packages+=(spotify-client)
+e_success "Spotify added to APT"
+
+e_header "Updating OS"
+revolver --style simpleDots start
+sudo apt-get -qq update
+sudo apt-get -qq -y dist-upgrade
+revolver stop
+e_success "OS updated"
+
+if (( ${#apt_packages[@]} > 0 )); then
+    e_header "Installing APT Packages"
+    for package in "${apt_packages[@]}"; do
+        revolver --style line start "$package"
+        sudo apt-get -qq -y install "$package"
+    done
+    e_success "APT packages installed"
+fi
+
+e_header "Installing tmuxp"
+pip3 install tmuxp
+e_success "tmuxp installed"
+
+e_header "Installing PIA"
+wget -O ~/Downloads/pia-v70-installer-linux.tar.gz https://installers.privateinternetaccess.com/download/pia-v70-installer-linux.tar.gz
+tar xzf ~/Downloads/pia-v70-installer-linux.tar.gz -C ~/Downloads/
+~/Downloads/pia-v70-installer-linux.sh
+e_success "PIA installed"
+
+e_header "Installing Gruvbox terminal theme"
+wget -O xt  http://git.io/v6JYg && chmod +x xt && ./xt && rm xt
+e_success "Gruvbox theme installed"
+
+e_header "Installing Emojify (;"
+sudo sh -c "curl https://raw.githubusercontent.com/mrowa44/emojify/master/emojify -o /usr/local/bin/emojify && chmod +x /usr/local/bin/emojify"
+e_success "Emojify installed $(emojify ":thumbsup:")"
+
+e_header "Installing ttygif"
+git clone https://github.com/icholy/ttygif.git ~/Downloads/ttygif
+cd ~/Downloads/ttygif
+make
+sudo make install
+cd -
+e_success "ttygif installed"
+
+e_header "Install Keepass2 things"
+wget -O ~/Downloads/GoogleSyncPlugin-2.1.2.zip https://downloads.sourceforge.net/project/kp-googlesync/GoogleSyncPlugin-2.x/GoogleSyncPlugin-2.1.2.zip
+wget -O ~/Downloads/log4net-2.0.8-bin-newkey.zip http://apache.osuosl.org//logging/log4net/binaries/log4net-2.0.8-bin-newkey.zip
+unzip -d ~/Downloads/ ~/Downloads/GoogleSyncPlugin-2.1.2.zip
+unzip -d ~/Downloads/ ~/Downloads/log4net-2.0.8-bin-newkey.zip
+sudo cp ~/Downloads/GoogleSyncPlugin.plgx /usr/lib/keepass2/
+sudo cp ~/Downloads/log4net-2.0.8/bin/mono/2.0/release/log4net.dll /usr/lib/keepass2/
+sudo cp ~/.dotfiles/linux/.lib/System.ServiceModel.Web.dll /usr/lib/keepass2/
+e_success "Keepass2 installed"
+
+e_header "Cleaning up files"
+rm -rf ~/Downloads/google-chrome-stable_current_amd64.deb
+rm -rf ~/Downloads/pia-v70-installer-linux.tar.gz
+rm -rf ~/Downloads/pia-v70-installer-linux.sh
+rm -rf ~/Downloads/ttygif
+rm -rf ~/Downloads/Google*
+rm -rf ~/Downloads/readme*
+rm -rf ~/Downloads/gpl*
+rm -rf ~/Downloads/log*
+e_success "Files cleaned"
