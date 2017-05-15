@@ -147,6 +147,12 @@ makepkg -si
 cd -
 e_success "neofetch installed"
 
+e_header "Adding pipes"
+git clone https://github.com/pipeseroni/pipes.sh.git ~/Downloads/pipes
+cd ~/Downloads/pipes
+make install
+cd -
+
 e_header "Cleaning up files"
 rm -rf ~/Downloads/*
 e_success "Files cleaned"
