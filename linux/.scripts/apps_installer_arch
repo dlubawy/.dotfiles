@@ -136,8 +136,8 @@ wget -O ~/Downloads/log4net-2.0.8-bin-newkey.zip http://apache.osuosl.org//loggi
 unzip -d ~/Downloads/ ~/Downloads/GoogleSyncPlugin-2.1.2.zip
 unzip -d ~/Downloads/ ~/Downloads/log4net-2.0.8-bin-newkey.zip
 sudo cp ~/Downloads/GoogleSyncPlugin.plgx /usr/share/keepass/Plugins
-sudo cp ~/Downloads/log4net-2.0.8/bin/mono/2.0/release/log4net.dll /usr/share/keepass/Plugins
-sudo cp ~/.dotfiles/linux/.lib/System.ServiceModel.Web.dll /usr/share/keepass/Plugins
+sudo cp ~/Downloads/log4net-2.0.8/bin/mono/2.0/release/log4net.dll /usr/share/keepass
+sudo cp ~/.dotfiles/linux/.lib/System.ServiceModel.Web.dll /usr/share/keepass
 e_success "Keepass2 installed"
 
 e_header "Installing neofetch"
@@ -150,7 +150,7 @@ e_success "neofetch installed"
 e_header "Adding pipes"
 git clone https://github.com/pipeseroni/pipes.sh.git ~/Downloads/pipes
 cd ~/Downloads/pipes
-make install
+sudo make install
 cd -
 
 e_header "Cleaning up files"
