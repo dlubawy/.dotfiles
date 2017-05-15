@@ -1,0 +1,23 @@
+- defaults:
+    link:
+        relink: true
+        force: true
+
+- link:
+    ~/.linux: linux/debian
+    ~/.gitignore_global: linux/gitignore_global
+    ~/.themes: linux/themes
+
+- shell:
+    -
+      command: "echo Install full apps package? [y/N] && \
+                read var && \
+                if [ $var = 'y' ];then ~/.dotfiles/linux/.scripts/apps_installer_debian;fi"
+      stdin: true
+      stdout: true
+    -
+      command: "echo Install BUW apps package? [y/N] && \
+                read var && \
+                if [ $var = 'y' ];then ~/.dotfiles/linux/.scripts/apps_installer_buw;fi"
+      stdin: true
+      stdout: true

@@ -1,12 +1,11 @@
 #!/usr/bin/env bash
 
-source $(which shml.sh)
+source ~/.dotfiles/bin/shml.sh
 
 apt_packages=()
 
 # Misc.
 apt_packages+=(
-    awscli
     build-essential
     cmake
     cmatrix

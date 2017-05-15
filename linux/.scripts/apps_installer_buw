@@ -1,0 +1,87 @@
+#!/usr/bin/env bash
+
+source ~/.dotfiles/bin/shml.sh
+
+apt_packages=()
+
+# Misc.
+apt_packages+=(
+    build-essential
+    cmake
+    cmatrix
+    cowsay
+    curl
+    dconf-cli
+    default-jdk
+    default-jre
+    fortune
+    gcc
+    glances
+    golang
+    groff
+    hollywood
+    htop
+    imagemagick
+    jq
+    lolcat
+    mercurial
+    neofetch
+    nmap
+    openssh-server
+    postgresql
+    python-dev
+    python3-dev
+    python-pip
+    python3-pip
+    vim
+    vim-gtk
+    virtualenv
+    silversearcher-ag
+    sl
+    telnet
+    tmux
+    tree
+    ttyrec
+    x11-apps
+    xdotool
+)
+
+e_header "Updating OS"
+revolver --style simpleDots start
+sudo apt-get -qq update
+sudo apt-get -qq -y dist-upgrade
+revolver stop
+e_success "OS updated"
+
+if (( ${#apt_packages[@]} > 0 )); then
+    e_header "Installing APT Packages"
+    for package in "${apt_packages[@]}"; do
+        revolver --style line start "$package"
+        sudo apt-get -qq -y install "$package"
+    done
+    e_success "APT packages installed"
+fi
+
+e_header "Installing tmuxp"
+pip3 install tmuxp
+e_success "tmuxp installed"
+
+e_header "Installing Gruvbox terminal theme"
+wget -O xt  http://git.io/v6JYg && chmod +x xt && ./xt && rm xt
+e_success "Gruvbox theme installed"
+
+e_header "Installing Emojify (;"
+sudo sh -c "curl https://raw.githubusercontent.com/mrowa44/emojify/master/emojify -o /usr/local/bin/emojify && chmod +x /usr/local/bin/emojify"
+e_success "Emojify installed $(emojify ":thumbsup:")"
+
+e_header "Installing ttygif"
+git clone https://github.com/icholy/ttygif.git ~/Downloads/ttygif
+cd ~/Downloads/ttygif
+make
+sudo make install
+cd -
+e_success "ttygif installed"
+
+e_header "Cleaning up files"
+rm -rf ~/Downloads/*
+e_success "Files cleaned"
