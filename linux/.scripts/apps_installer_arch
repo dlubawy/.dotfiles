@@ -46,9 +46,10 @@ pacman_packages+=(
     gvim
     python-virtualenv
     vlc
-    the_silver_searcher
+    rxvt-unicode
     sl
     steam
+    the_silver_searcher
     tigervnc
     tmux
     tree
