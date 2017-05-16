@@ -7,7 +7,7 @@
     ~/.linux: linux/arch
     ~/.gitignore_global: linux/gitignore_global
     ~/.themes: linux/themes
-    ~/.Xresources.d: link/Xresources.d
+    ~/.Xresources.d: linux/Xresources.d
 
 - shell:
     -
