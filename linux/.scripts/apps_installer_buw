@@ -46,6 +46,10 @@ apt_packages+=(
     xdotool
 )
 
+e_header "Adding neofetch APT keys"
+sudo add-apt-repository ppa:dawidd0811/neofetch
+e_success "APT keys added"
+
 e_header "Updating OS"
 revolver --style simpleDots start
 sudo apt-get -qq update
@@ -63,12 +67,8 @@ if (( ${#apt_packages[@]} > 0 )); then
 fi
 
 e_header "Installing tmuxp"
-pip3 install tmuxp
+pip3 install --user tmuxp
 e_success "tmuxp installed"
-
-e_header "Installing Gruvbox terminal theme"
-wget -O xt  http://git.io/v6JYg && chmod +x xt && ./xt && rm xt
-e_success "Gruvbox theme installed"
 
 e_header "Installing Emojify (;"
 sudo sh -c "curl https://raw.githubusercontent.com/mrowa44/emojify/master/emojify -o /usr/local/bin/emojify && chmod +x /usr/local/bin/emojify"
@@ -83,7 +83,7 @@ cd -
 e_success "ttygif installed"
 
 e_header "Installing Reddit Terminal Viewer"
-pip install rtv
+pip install --user rtv
 e_success "Installed rtv"
 
 e_header "Installing pipes.sh"
