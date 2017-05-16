@@ -88,7 +88,7 @@ if (( ${#apt_packages[@]} > 0 )); then
 fi
 
 e_header "Installing tmuxp"
-pip3 install tmuxp
+pip3 install --user tmuxp
 e_success "tmuxp installed"
 
 e_header "Installing PIA"
@@ -124,7 +124,7 @@ sudo cp ~/.dotfiles/linux/.lib/System.ServiceModel.Web.dll /usr/lib/keepass2/
 e_success "Keepass2 installed"
 
 e_header "Installing Reddit Terminal Viewer"
-pip install rtv
+pip install --user rtv
 e_success "Installed rtv"
 
 e_header "Installing pipes.sh"
@@ -135,12 +135,5 @@ cd -
 e_success "pipes.sh installed"
 
 e_header "Cleaning up files"
-rm -rf ~/Downloads/google-chrome-stable_current_amd64.deb
-rm -rf ~/Downloads/pia-v70-installer-linux.tar.gz
-rm -rf ~/Downloads/pia-v70-installer-linux.sh
-rm -rf ~/Downloads/ttygif
-rm -rf ~/Downloads/Google*
-rm -rf ~/Downloads/readme*
-rm -rf ~/Downloads/gpl*
-rm -rf ~/Downloads/log*
+rm -rf ~/Downloads/*
 e_success "Files cleaned"
