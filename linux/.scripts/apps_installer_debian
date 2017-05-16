@@ -42,6 +42,7 @@ apt_packages+=(
     qbittorrent
     redshift
     redshift-gtk
+    rxvt-unicode-256color
     vim
     vim-gtk
     virtualenv
