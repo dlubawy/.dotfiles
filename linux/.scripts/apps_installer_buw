@@ -68,7 +68,7 @@ if (( ${#apt_packages[@]} > 0 )); then
 fi
 
 e_header "Installing tmuxp"
-pip3 install --user tmuxp
+sudo pip3 install tmuxp
 e_success "tmuxp installed"
 
 e_header "Installing Emojify (;"
