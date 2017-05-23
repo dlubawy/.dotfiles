@@ -1,5 +1,5 @@
-#include "~/.Xresources.d/themes/gruvbox-dark"
-#include "~/.Xresources.d/themes/gruvbox-urxvt256"
+#include "themes/gruvbox-dark"
+#include "themes/gruvbox-urxvt256"
 
 ! do not scroll with output
 URxvt*scrollTtyOutput: false
