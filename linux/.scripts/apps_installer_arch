@@ -161,6 +161,13 @@ makepkg -si
 cd -
 e_success "rtv installed"
 
+e_header "Installing Slack"
+git clone https://aur.archlinux.org/slack-desktop.git ~/.opt/slack
+cd ~/.opt/slack
+makepkg -si
+cd -
+e_success "slack installed"
+
 e_header "Cleaning up files"
 rm -rf ~/Downloads/*
 e_success "Files cleaned"
