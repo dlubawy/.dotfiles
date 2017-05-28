@@ -9,15 +9,23 @@ alias search="pacsearch"
 
 # Install a package from AUR
 function aurstall() {
-    git clone https://aur.archlinux.org/$@.git ~/.opt/$@;
-    cd ~/.opt/$@;
-    makepkg -si;
-    cd -
+    if [ $1 == "-d" ];then
+        git clone https://aur.archlinux.org/$2.git ~/.opt/$2;
+        cd ~/.opt/$2;
+        makepkg -s;
+        sudo pacman -U --asdeps $2-*.pkg.tar.xz;
+        cd -;
+    else
+        git clone https://aur.archlinux.org/$@.git ~/.opt/$@;
+        cd ~/.opt/$@;
+        makepkg -si;
+        cd -;
+    fi
 }
 
 # Remove an AUR package and delete its source
 function auremove() {
-    sudo pacman -Rs $@;
+    sudo pacman -Rns $@;
     rm -rf ~/.opt/$@;
 }
 

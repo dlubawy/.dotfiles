@@ -89,12 +89,14 @@ e_header "Installing Spotify"
 git clone https://aur.archlinux.org/libopenssl-1.0-compat.git ~/.opt/libopenssl
 cd ~/.opt/libopenssl
 gpg --recv-keys --keyserver hkp://pgp.mit.edu D9C4D26D0E604491
-makepkg -si
+makepkg -s
+sudo pacman -U --asdeps libopenssl-1.0-compat-*.pkg.tar.xz
 cd -
 git clone https://aur.archlinux.org/libcurl-openssl-1.0.git ~/.opt/libcurl
 cd ~/.opt/libcurl
 gpg --recv-keys 5CC908FDB71E12C2
-makepkg -si
+makepkg -s
+sudo pacman -U --asdeps libcurl-openssl-1.0-*.pkg.tar.xz
 cd -
 git clone https://aur.archlinux.org/spotify.git ~/.opt/spotify
 cd ~/.opt/spotify
@@ -120,7 +122,8 @@ e_success "Emojify installed $(emojify ":thumbsup:")"
 e_header "Installing ttyrec"
 git clone https://aur.archlinux.org/ttyrec.git ~/.opt/ttyrec
 cd ~/.opt/ttyrec
-makepkg -si
+makepkg -s
+sudo pacman -U --asdeps ttyrec-*.pkg.tar.xz
 cd -
 e_success "ttyrec installed"
 
@@ -155,7 +158,13 @@ sudo make install
 cd -
 
 e_header "Installing Reddit Terminal Viewer"
-git clone https://aur.archlinux.org/rtv-git.git ~/.opt/rtv
+git clone https://aur.archlinux.org/python3-kitchen.git ~/.opt/python3-kitchen
+cd ~/.opt/python3-kitchen
+makepkg -s
+sudo pacman -U --asdeps python3-kitchen-*.pkg.tar.xz
+cd -
+
+git clone https://aur.archlinux.org/rtv.git ~/.opt/rtv
 cd ~/.opt/rtv
 makepkg -si
 cd -
