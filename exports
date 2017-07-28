@@ -16,4 +16,6 @@ export HISTIGNORE="ls:cd:cd -:pwd:exit:date:* --help"
 export LANG="en_US"
 export LC_ALL="en_US.UTF-8"
 
+export GOPATH="/home/drew/Projects/go"
+
 # vim: set filetype=sh:

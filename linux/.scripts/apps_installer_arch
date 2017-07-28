@@ -75,6 +75,7 @@ fi
 
 e_header "Making AUR directory"
 mkdir ~/.opt
+mkdir ~/.opt/deps
 
 # Chrome
 e_header "Installing Chrome"
@@ -86,14 +87,14 @@ e_success "Chrome installed"
 
 # Spotify
 e_header "Installing Spotify"
-git clone https://aur.archlinux.org/libopenssl-1.0-compat.git ~/.opt/libopenssl
-cd ~/.opt/libopenssl
+git clone https://aur.archlinux.org/libopenssl-1.0-compat.git ~/.opt/deps/libopenssl-1.0-compat
+cd ~/.opt/deps/libopenssl-1.0-compat
 gpg --recv-keys --keyserver hkp://pgp.mit.edu D9C4D26D0E604491
 makepkg -s
 sudo pacman -U --asdeps libopenssl-1.0-compat-*.pkg.tar.xz
 cd -
-git clone https://aur.archlinux.org/libcurl-openssl-1.0.git ~/.opt/libcurl
-cd ~/.opt/libcurl
+git clone https://aur.archlinux.org/libcurl-openssl-1.0.git ~/.opt/deps/libcurl-openssl-1.0
+cd ~/.opt/deps/libcurl-openssl-1.0
 gpg --recv-keys 5CC908FDB71E12C2
 makepkg -s
 sudo pacman -U --asdeps libcurl-openssl-1.0-*.pkg.tar.xz
@@ -109,8 +110,8 @@ pip3 install --user tmuxp
 e_success "tmuxp installed"
 
 e_header "Installing PIA"
-git clone https://aur.archlinux.org/private-internet-access-vpn.git ~/.opt/pia
-cd ~/.opt/pia
+git clone https://aur.archlinux.org/private-internet-access-vpn.git ~/.opt/private-internet-access-vpn
+cd ~/.opt/private-internet-access-vpn
 makepkg -si
 cd -
 e_success "PIA installed"
@@ -120,8 +121,8 @@ sudo sh -c "curl https://raw.githubusercontent.com/mrowa44/emojify/master/emojif
 e_success "Emojify installed $(emojify ":thumbsup:")"
 
 e_header "Installing ttyrec"
-git clone https://aur.archlinux.org/ttyrec.git ~/.opt/ttyrec
-cd ~/.opt/ttyrec
+git clone https://aur.archlinux.org/ttyrec.git ~/.opt/deps/ttyrec
+cd ~/.opt/deps/ttyrec
 makepkg -s
 sudo pacman -U --asdeps ttyrec-*.pkg.tar.xz
 cd -
@@ -158,8 +159,8 @@ sudo make install
 cd -
 
 e_header "Installing Reddit Terminal Viewer"
-git clone https://aur.archlinux.org/python3-kitchen.git ~/.opt/python3-kitchen
-cd ~/.opt/python3-kitchen
+git clone https://aur.archlinux.org/python3-kitchen.git ~/.opt/deps/python3-kitchen
+cd ~/.opt/deps/python3-kitchen
 makepkg -s
 sudo pacman -U --asdeps python3-kitchen-*.pkg.tar.xz
 cd -
@@ -171,8 +172,8 @@ cd -
 e_success "rtv installed"
 
 e_header "Installing Slack"
-git clone https://aur.archlinux.org/slack-desktop.git ~/.opt/slack
-cd ~/.opt/slack
+git clone https://aur.archlinux.org/slack-desktop.git ~/.opt/slack-desktop
+cd ~/.opt/slack-desktop
 makepkg -si
 cd -
 e_success "slack installed"

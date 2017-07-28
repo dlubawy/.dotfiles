@@ -6,6 +6,6 @@ windows:
           main-pane-width: 100
       panes:
           - shell_command:
-              - vim -c Explore
+              - vim
           - shell_command:
               - null
