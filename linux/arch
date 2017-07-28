@@ -9,9 +9,10 @@ alias search="pacsearch"
 
 # Install a package from AUR
 function aurstall() {
+    # Install as dependency
     if [ $1 == "-d" ];then
-        git clone https://aur.archlinux.org/$2.git ~/.opt/$2;
-        cd ~/.opt/$2;
+        git clone https://aur.archlinux.org/$2.git ~/.opt/deps/$2;
+        cd ~/.opt/deps/$2;
         makepkg -s;
         sudo pacman -U --asdeps $2-*.pkg.tar.xz;
         cd -;
