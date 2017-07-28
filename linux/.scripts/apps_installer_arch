@@ -7,6 +7,7 @@ pacman_packages=()
 # Misc.
 pacman_packages+=(
     base-devel
+    bash-completion
     cmake
     cmatrix
     cowsay

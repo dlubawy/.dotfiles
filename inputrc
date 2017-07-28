@@ -23,6 +23,9 @@
 set editing-mode vi
 set show-mode-in-prompt on
 
+# single tab partially completes word and shows suggestions if ambiguous
+set show-all-if-ambiguous on
+
 # vi settings
 $if mode=vi
     set keymap vi-command

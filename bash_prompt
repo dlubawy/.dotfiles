@@ -49,9 +49,9 @@ fi
 
 # Git status using git-prompt
 GIT_PROMPT_ONLY_IN_REPO=1
-. ~/.bash-git-prompt/gitprompt.sh
+source ~/.bash-git-prompt/gitprompt.sh
 
 # Gruvbox color fix
-. ~/.vim/bundle/gruvbox/gruvbox_256palette.sh
+source ~/.vim/bundle/gruvbox/gruvbox_256palette.sh
 
 # vim: set filetype=sh:
