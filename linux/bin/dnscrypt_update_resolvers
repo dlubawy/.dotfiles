@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+sudo wget https://download.dnscrypt.org/dnscrypt-proxy/dnscrypt-resolvers.csv -O /usr/share/dnscrypt-proxy/dnscrypt-resolvers.csv
