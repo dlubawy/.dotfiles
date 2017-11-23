@@ -12,6 +12,7 @@ alias -- -="cd -"
 
 # Shortcuts
 alias dl="cd ~/Downloads"
+alias dr="cd ~/GoogleDrive"
 alias dt="cd ~/Desktop"
 alias p="cd ~/Projects"
 alias h="history"
@@ -77,5 +78,7 @@ alias git=hub
 alias quit='kill -3'
 
 alias tf='tail -f'
+
+alias dnsflush='sudo unbound-control flush dns'
 
 # vim: set filetype=sh:

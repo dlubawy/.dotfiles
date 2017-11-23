@@ -170,4 +170,14 @@ function gitfile() {
     wget https://raw.githubusercontent.com/$1/master/$2;
 }
 
+# Unmount Google Drive
+function dunmount() {
+    fusermount -u ~/GoogleDrive/$1
+}
+
+# Mount Google Drive
+function dmount() {
+    google-drive-ocamlfuse -label $1 ~/GoogleDrive/$1
+}
+
 # vim: set filetype=sh:

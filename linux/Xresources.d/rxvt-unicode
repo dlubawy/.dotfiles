@@ -1,6 +1,8 @@
 #include "themes/gruvbox-dark"
 #include "themes/gruvbox-urxvt256"
 
+urxvt*internalBorder: 0
+
 ! do not scroll with output
 URxvt*scrollTtyOutput: false
 

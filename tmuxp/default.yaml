@@ -9,3 +9,5 @@ windows:
               - vim
           - shell_command:
               - null
+          - shell_command:
+              - null

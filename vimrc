@@ -101,6 +101,7 @@ set statusline=%F\ %m\ %{fugitive#statusline()}\ %y%=%l,%c\ %P
 set mouse=a
 set encoding=utf-8
 set showtabline=2
+set guifont=Fantasque\ Sans\ Mono\ 11
 
 if exists('$TMUX')  " Support resizing in tmux
     set ttymouse=xterm2
