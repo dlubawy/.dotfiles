@@ -2,4 +2,5 @@
 
 git checkout bashrc
 git checkout bash_profile
+git checkout zsh/zshrc
 rm scm_breeze/scm_breeze
