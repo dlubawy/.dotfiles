@@ -1,5 +1,7 @@
 #!bash
 
+bind 'set show-all-if-ambiguous on'
+
 _gibo()
 {
     local cur opts

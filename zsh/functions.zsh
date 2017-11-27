@@ -1,51 +1,20 @@
-source $(which shml.sh)
-
-# Logging stuff.
-function e_header()   { echo -e "$(c white)$(a bold $@)$(br)$(hr)"; }
-function e_success()  { echo -e " $(c green)$(a bold "\r $(icon check)") $@"; }
-function e_error()    { echo -e " $(c red)$(a bold "\r $(icon x)") $@"; }
-function e_arrow()    { echo -ne " $(c blue)$(a bold →) $@"; }
-
 # Create a new directory and enter it
-function mkd() {
+mkd() {
     mkdir -p "$@" && cd "$_";
 }
 
 # Convert vimwiki to html
-function vw_to_html() {
+vw_to_html() {
     pandoc $1 --mathjax -f vimwiki -t html -s -o $2;
 }
 
 # Convert vimwiki to markdown
-function vw_to_md() {
+vw_to_md() {
     pandoc $1 -f vimwiki -t markdown -s -o $2
 }
 
-# Useful extract feature so you don't have to remember the arguments to extract
-# all of the various archive formats
-extract () {
-   if [ -f $1 ] ; then
-       case $1 in
-           *.tar.bz2)   tar xvjf $1    ;;
-           *.tar.gz)    tar xvzf $1    ;;
-           *.bz2)       bunzip2 $1     ;;
-           *.rar)       unrar x $1       ;;
-           *.gz)        gunzip $1      ;;
-           *.tar)       tar xvf $1     ;;
-           *.tbz2)      tar xvjf $1    ;;
-           *.tgz)       tar xvzf $1    ;;
-           *.zip)       unzip $1       ;;
-           *.Z)         uncompress $1  ;;
-           *.7z)        7z x $1        ;;
-           *)           echo "don't know how to extract '$1'..." ;;
-       esac
-   else
-       echo "'$1' is not a valid file!"
-   fi
- }
-
 # Create a .tar.gz archive, using `zopfli`, `pigz` or `gzip` for compression
-function targz() {
+targz() {
     local tmpFile="${@%/}.tar";
     tar -cvf "${tmpFile}" --exclude=".DS_Store" "${@}" || return 1;
 
@@ -79,7 +48,7 @@ function targz() {
 }
 
 # Determine size of a file or total size of a directory
-function fs() {
+fs() {
     if du -b /dev/null > /dev/null 2>&1; then
         local arg=-sbh;
     else
@@ -93,7 +62,7 @@ function fs() {
 }
 
 # Create a data URL from a file
-function dataurl() {
+dataurl() {
     local mimeType=$(file -b --mime-type "$1");
     if [[ $mimeType == text/* ]]; then
         mimeType="${mimeType};charset=utf-8";
@@ -102,7 +71,7 @@ function dataurl() {
 }
 
 # Create a git.io short URL
-function gitio() {
+gitio() {
     if [ -z "${1}" -o -z "${2}" ]; then
         echo "Usage: \`gitio slug url\`";
         return 1;
@@ -111,7 +80,7 @@ function gitio() {
 }
 
 # Start an HTTP server from a directory, optionally specifying the port
-function server() {
+server() {
     local port="${1:-8000}";
     sleep 1 && open "http://localhost:${port}/" &
     # Set the default Content-Type to `text/plain` instead of `application/octet-stream`
@@ -121,7 +90,7 @@ function server() {
 
 # Show all the names (CNs and SANs) listed in the SSL certificate
 # for a given domain
-function getcertnames() {
+getcertnames() {
     if [ -z "${1}" ]; then
         echo "ERROR: No domain specified.";
         return 1;
@@ -155,7 +124,7 @@ function getcertnames() {
 
 # `v` with no arguments opens the current directory in Vim, otherwise opens the
 # given location
-function v() {
+v() {
     if [ $# -eq 0 ]; then
         vim .;
     else
@@ -167,27 +136,25 @@ function v() {
 # the `.git` directory, listing directories first. The output gets piped into
 # `less` with options to preserve color and line numbers, unless the output is
 # small enough for one screen.
-function tre() {
+tre() {
     tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX;
 }
 
 # Search for a process
-function psgrep() {
+psgrep() {
         ps -ef | grep $1 | grep -v grep
 }
 
-function gitfile() {
+gitfile() {
     wget https://raw.githubusercontent.com/$1/master/$2;
 }
 
 # Unmount Google Drive
-function dunmount() {
+dunmount() {
     fusermount -u ~/GoogleDrive/$1
 }
 
 # Mount Google Drive
-function dmount() {
+dmount() {
     google-drive-ocamlfuse -label $1 ~/GoogleDrive/$1
 }
-
-# vim: set filetype=sh:

@@ -1,38 +1,82 @@
 export PATH=~/.dotfiles/linux/bin/:$PATH
 export WINDOWID=$(xdotool getwindowfocus)
 
-# Package management
-alias update="sudo pacman -Syu"
-alias install="sudo pacman -S"
-alias remove="sudo pacman -Rs"
-alias search="pacsearch"
+# Package Management
+alias paupg='pacaur -Syu'
+alias pasu='pacaur -Syu --noconfirm'
+alias pain='pacaur -S'
+alias pains='pacaur -U'
+alias pare='pacaur -R'
+alias parem='pacaur -Rns'
+alias parep='pacaur -Si'
+alias pareps='pacaur -Ss'
+alias paloc='pacaur -Qi'
+alias palocs='pacaur -Qs'
+alias palst='pacaur -Qe'
+alias paorph='pacaur -Qtd'
+alias painsd='pacaur -S --asdeps'
+alias pamir='pacaur -Syy'
+alias paupd='pacaur -Sy'
 
-# Install a package from AUR
-function aurstall() {
-    # Install as dependency
-    if [ $1 == "-d" ];then
-        git clone https://aur.archlinux.org/$2.git ~/.opt/deps/$2;
-        cd ~/.opt/deps/$2;
-        makepkg -s;
-        sudo pacman -U --asdeps $2-*.pkg.tar.xz;
-        cd -;
-    else
-        git clone https://aur.archlinux.org/$@.git ~/.opt/$@;
-        cd ~/.opt/$@;
-        makepkg -si;
-        cd -;
-    fi
+alias upgrade='pacaur -Syu'
+
+# Pacman - https://wiki.archlinux.org/index.php/Pacman_Tips
+alias pacupg='sudo pacman -Syu'
+alias pacin='sudo pacman -S'
+alias pacins='sudo pacman -U'
+alias pacre='sudo pacman -R'
+alias pacrem='sudo pacman -Rns'
+alias pacrep='pacman -Si'
+alias pacreps='pacman -Ss'
+alias pacloc='pacman -Qi'
+alias paclocs='pacman -Qs'
+alias pacinsd='sudo pacman -S --asdeps'
+alias pacmir='sudo pacman -Syy'
+alias paclsorphans='sudo pacman -Qdt'
+alias pacrmorphans='sudo pacman -Rs $(pacman -Qtdq)'
+alias pacfileupg='sudo pacman -Fy'
+alias pacfiles='pacman tFs'
+alias pacupd='sudo pacman -Sy'
+
+function paclist() {
+  # Source: https://bbs.archlinux.org/viewtopic.php?id=93683
+  LC_ALL=C pacman -Qei $(pacman -Qu | cut -d " " -f 1) | \
+    awk 'BEGIN {FS=":"} /^Name/{printf("\033[1;36m%s\033[1;37m", $2)} /^Description/{print $2}'
 }
 
-# Remove an AUR package and delete its source
-function auremove() {
-    sudo pacman -Rns $@;
-    rm -rf ~/.opt/$@;
+function pacdisowned() {
+  emulate -L zsh
+
+  tmp=${TMPDIR-/tmp}/pacman-disowned-$UID-$$
+  db=$tmp/db
+  fs=$tmp/fs
+
+  mkdir "$tmp"
+  trap  'rm -rf "$tmp"' EXIT
+
+  pacman -Qlq | sort -u > "$db"
+
+  find /bin /etc /lib /sbin /usr ! -name lost+found \
+    \( -type d -printf '%p/\n' -o -print \) | sort > "$fs"
+
+  comm -23 "$fs" "$db"
 }
 
-# Search the AUR repo for a package
-function aursearch() {
-    curl -G -d "/rpc/?v=5&type=search&by=name&arg=$@" https://aur.archlinux.org/rpc.php | jq -r '.results';
+function pacmanallkeys() {
+  emulate -L zsh
+  curl -s https://www.archlinux.org/people/{developers,trustedusers}/ | \
+    awk -F\" '(/pgp.mit.edu/) { sub(/.*search=0x/,""); print $1}' | \
+    xargs sudo pacman-key --recv-keys
+}
+
+function pacmansignkeys() {
+  emulate -L zsh
+  for key in $*; do
+    sudo pacman-key --recv-keys $key
+    sudo pacman-key --lsign-key $key
+    printf 'trust\n3\n' | sudo gpg --homedir /etc/pacman.d/gnupg \
+      --no-permission-warning --command-fd 0 --edit-key $key
+  done
 }
 
 # vim:set filetype=sh:

@@ -55,6 +55,8 @@ Plugin 'scrooloose/nerdtree'
 
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 
+Plugin 'vimwiki/vimwiki'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -201,6 +203,9 @@ augroup configgroup
     autocmd FileType markdown setlocal tw=79
     autocmd FileType markdown setlocal fo=aw2tq
     autocmd FileType markdown setlocal spell spelllang=en_us
+    autocmd FileType zsh setlocal tabstop=2
+    autocmd FileType zsh setlocal shiftwidth=2
+    autocmd FileType zsh setlocal softtabstop=2
     autocmd BufEnter *.cls setlocal filetype=java
     autocmd BufEnter *.zsh-theme setlocal filetype=zsh
     autocmd BufEnter Makefile setlocal noexpandtab
@@ -293,6 +298,10 @@ set backupdir=~/.vim-temp,~/.tmp,~/tmp,/var/tmp,/tmp
 set backupskip=/tmp/*,/private/tmp/*
 set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set writebackup
+" }}}
+
+"Vimwiki {{{
+let g:vimwiki_list=[{'path':'~/Documents/vimwiki'}]
 " }}}
 
 " Custom Functions {{{
