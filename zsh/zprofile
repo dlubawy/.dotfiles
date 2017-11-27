@@ -1,0 +1,7 @@
+typeset -U path
+path=(
+~/.dotfiles/bin
+~/.dotfiles/linux/bin
+/usr/local/go/bin
+$path[@]
+)
