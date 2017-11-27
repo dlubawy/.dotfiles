@@ -103,6 +103,8 @@ e_success "oh-my-zsh installed"
 e_header "Installing zsh configs"
 ln -s $HOME/.dotfiles/zsh/aliases.zsh ~/.oh-my-zsh/custom/
 ln -s $HOME/.dotfiles/zsh/functions.zsh ~/.oh-my-zsh/custom/
+ln -s $HOME/.dotfiles/zsh/zshrc ~/.zshrc
+ln -s $HOME/.dotfiles/zsh/zprofile ~/.zprofile
 git clone https://github.com/bhilburn/powerlevel9k.git ~/.custom/themes/powerlevel9k
 e_success "Installed zsh configs"
 
