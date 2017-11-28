@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+# shellcheck source=/home/drew/.dotfiles/bin/shml.sh
 source ~/.dotfiles/bin/shml.sh
 
 pacman_packages=()
@@ -60,7 +61,7 @@ pacman_packages+=(
     xdotool
     zsh
     zsh-completions
-    zsh-highlighting
+    zsh-syntax-highlighting
 )
 
 e_header "Updating OS"
@@ -85,56 +86,56 @@ mkdir ~/.opt/deps
 # pacaur
 e_header "Installing pacaur"
 git clone https://aur.archlinux.org/cower.git ~/.opt/deps/cower
-cd ~/.opt/deps/cower
+cd ~/.opt/deps/cower || return
 makepkg -s
 sudo pacman -U --asdeps cower*.pkg.tar.xz
-cd -
+cd - || return
 git clone https://aur.archlinux.org/pacaur.git ~/.opt/pacaur
-cd ~/.opt/pacaur
+cd ~/.opt/pacaur || return
 makepkg -si
-cd -
+cd - || return
 e_success "pacaur installed"
 
 # Antigen
 e_header "Installing oh-my-zsh"
 git clone https://aur.archlinux.org/antigen-git.git ~/.opt/antigen-git
-cd ~/.opt/antigen-git
+cd ~/.opt/antigen-git || return
 makepkg -si
-cd -
+cd - || return
 e_success "oh-my-zsh installed"
 
 e_header "Installing zsh configs"
-ln -s $HOME/.dotfiles/zsh/ ~/.zsh
-ln -s $HOME/.dotfiles/zsh/zshrc ~/.zshrc
-ln -s $HOME/.dotfiles/zsh/zprofile ~/.zprofile
+ln -fs "$HOME/.dotfiles/zsh/" ~/.zsh
+ln -fs "$HOME/.dotfiles/zsh/zshrc" ~/.zshrc
+ln -fs "$HOME/.dotfiles/zsh/zprofile" ~/.zprofile
 e_success "Installed zsh configs"
 
 # Chrome
 e_header "Installing Chrome"
 git clone https://aur.archlinux.org/google-chrome.git ~/.opt/google-chrome/
-cd ~/.opt/google-chrome
+cd ~/.opt/google-chrome || return
 makepkg -si
-cd -
+cd - || return
 e_success "Chrome installed"
 
 # Spotify
 e_header "Installing Spotify"
 git clone https://aur.archlinux.org/libopenssl-1.0-compat.git ~/.opt/deps/libopenssl-1.0-compat
-cd ~/.opt/deps/libopenssl-1.0-compat
+cd ~/.opt/deps/libopenssl-1.0-compat || return
 gpg --recv-keys --keyserver hkp://pgp.mit.edu D9C4D26D0E604491
 makepkg -s
 sudo pacman -U --asdeps libopenssl-1.0-compat-*.pkg.tar.xz
-cd -
+cd - || return
 git clone https://aur.archlinux.org/libcurl-openssl-1.0.git ~/.opt/deps/libcurl-openssl-1.0
-cd ~/.opt/deps/libcurl-openssl-1.0
+cd ~/.opt/deps/libcurl-openssl-1.0 || return
 gpg --recv-keys 5CC908FDB71E12C2
 makepkg -s
 sudo pacman -U --asdeps libcurl-openssl-1.0-*.pkg.tar.xz
-cd -
+cd - || return
 git clone https://aur.archlinux.org/spotify.git ~/.opt/spotify
-cd ~/.opt/spotify
+cd ~/.opt/spotify || return
 makepkg -si
-cd -
+cd - || return
 e_success "Spotify installed"
 
 e_header "Installing tmuxp"
@@ -143,9 +144,9 @@ e_success "tmuxp installed"
 
 e_header "Installing PIA"
 git clone https://aur.archlinux.org/private-internet-access-vpn.git ~/.opt/private-internet-access-vpn
-cd ~/.opt/private-internet-access-vpn
+cd ~/.opt/private-internet-access-vpn || return
 makepkg -si
-cd -
+cd - || return
 e_success "PIA installed"
 
 e_header "Installing Emojify (;"
@@ -154,17 +155,17 @@ e_success "Emojify installed $(emojify ":thumbsup:")"
 
 e_header "Installing ttyrec"
 git clone https://aur.archlinux.org/ttyrec.git ~/.opt/deps/ttyrec
-cd ~/.opt/deps/ttyrec
+cd ~/.opt/deps/ttyrec || return
 makepkg -s
 sudo pacman -U --asdeps ttyrec-*.pkg.tar.xz
-cd -
+cd - || return
 e_success "ttyrec installed"
 
 e_header "Installing ttygif"
 git clone https://aur.archlinux.org/ttygif.git ~/.opt/ttygif
-cd ~/.opt/ttygif
+cd ~/.opt/ttygif || return
 makepkg -si
-cd -
+cd - || return
 e_success "ttygif installed"
 
 e_header "Install Keepass2 things"
@@ -179,35 +180,35 @@ e_success "Keepass2 installed"
 
 e_header "Installing neofetch"
 git clone https://aur.archlinux.org/neofetch.git ~/.opt/neofetch
-cd ~/.opt/neofetch
+cd ~/.opt/neofetch || return
 makepkg -si
-cd -
+cd - || return
 e_success "neofetch installed"
 
 e_header "Adding pipes"
 git clone https://github.com/pipeseroni/pipes.sh.git ~/Downloads/pipes
-cd ~/Downloads/pipes
+cd ~/Downloads/pipes || return
 sudo make install
-cd -
+cd - || return
 
 e_header "Installing Reddit Terminal Viewer"
 git clone https://aur.archlinux.org/python3-kitchen.git ~/.opt/deps/python3-kitchen
-cd ~/.opt/deps/python3-kitchen
+cd ~/.opt/deps/python3-kitchen || return
 makepkg -s
 sudo pacman -U --asdeps python3-kitchen-*.pkg.tar.xz
-cd -
+cd - || return
 
 git clone https://aur.archlinux.org/rtv.git ~/.opt/rtv
-cd ~/.opt/rtv
+cd ~/.opt/rtv || return
 makepkg -si
-cd -
+cd - || return
 e_success "rtv installed"
 
 e_header "Installing Slack"
 git clone https://aur.archlinux.org/slack-desktop.git ~/.opt/slack-desktop
-cd ~/.opt/slack-desktop
+cd ~/.opt/slack-desktop || return
 makepkg -si
-cd -
+cd - || return
 e_success "slack installed"
 
 e_header "Cleaning up files"
