@@ -3,6 +3,8 @@ source /usr/share/zsh/share/antigen.zsh
 # Load the oh-my-zsh's library
 antigen use oh-my-zsh
 
+ZSH_TMUX_AUTOSTART=true
+
 antigen bundles <<EOBUNDLES
   archlinux
   catimg
@@ -13,6 +15,7 @@ antigen bundles <<EOBUNDLES
   common-aliases
   encode64
   extract
+  fcambus/ansiweather
   git
   github
   git-extras
@@ -22,11 +25,14 @@ antigen bundles <<EOBUNDLES
   history
   heroku
   jsontools
+  MichaelAquilina/zsh-emojis
+  MichaelAquilina/zsh-you-should-use
+  nviennot/zsh-vim-plugin
   nyan
   pip
   postgres
-  python
   pyenv
+  python
   rand-quote
   sprunge
   sudo
@@ -60,10 +66,10 @@ POWERLEVEL9K_SHOW_CHANGESET=true
 POWERLEVEL9K_CHANGESET_HASH_LENGTH=6
 
 POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=""
-POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%F{208}$ %F{223}"
+POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%F{208}$ %F{15}"
 
-POWERLEVEL9K_OS_ICON_BACKGROUND="246"
-POWERLEVEL9K_OS_ICON_FOREGROUND="235"
+POWERLEVEL9K_OS_ICON_BACKGROUND="7"
+POWERLEVEL9K_OS_ICON_FOREGROUND="0"
 
 POWERLEVEL9K_CONTEXT_DEFAULT_BACKGROUND='237'
 POWERLEVEL9K_CONTEXT_DEFAULT_FOREGROUND='248'
@@ -76,9 +82,9 @@ POWERLEVEL9K_DIR_DEFAULT_FOREGROUND='248'
 POWERLEVEL9K_DIR_HOME_SUBFOLDER_FOREGROUND='248'
 
 # Vi-Mode
-POWERLEVEL9K_VI_MODE_INSERT_BACKGROUND='109'
+POWERLEVEL9K_VI_MODE_INSERT_BACKGROUND='12'
 POWERLEVEL9K_VI_MODE_INSERT_FOREGROUND='236'
-POWERLEVEL9K_VI_MODE_NORMAL_BACKGROUND='246'
+POWERLEVEL9K_VI_MODE_NORMAL_BACKGROUND='7'
 POWERLEVEL9K_VI_MODE_NORMAL_FOREGROUND='236'
 
 # `git hub colors`
@@ -86,7 +92,7 @@ POWERLEVEL9K_VCS_CLEAN_BACKGROUND='239'
 POWERLEVEL9K_VCS_CLEAN_FOREGROUND='248'
 POWERLEVEL9K_VCS_UNTRACKED_BACKGROUND='208'
 POWERLEVEL9K_VCS_UNTRACKED_FOREGROUND='236'
-POWERLEVEL9K_VCS_MODIFIED_BACKGROUND='108'
+POWERLEVEL9K_VCS_MODIFIED_BACKGROUND='14'
 POWERLEVEL9K_VCS_MODIFIED_FOREGROUND='236'
 antigen theme bhilburn/powerlevel9k powerlevel9k
 
@@ -95,8 +101,8 @@ antigen apply
 
 # User configuration
 
-# Use 256 colors
-export TERM="xterm-256color"
+# 256 Color Support
+export TERM="screen-256color"
 
 # Editor
 export EDITOR="vim"
@@ -122,4 +128,7 @@ if [ -f ~/.extra ]; then
   source ~/.extra
 fi
 
-[ -s "/home/drew/.scm_breeze/scm_breeze.sh" ] && source "/home/drew/.scm_breeze/scm_breeze.sh"
+bindkey -M viins 'jk' vi-cmd-mode
+
+# Fix gruvbox colors
+source ~/.vim/bundle/gruvbox/gruvbox_256palette.sh
